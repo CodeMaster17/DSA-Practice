@@ -61,11 +61,31 @@ void InsertNodeBeg()
     head = newNode;
 }
 
+// insert node end
+void InsertNodeEnd()
+{
+    int info;
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    struct Node *temp = head;
+    printf("Enter the data you want to enter in the last :");
+    scanf("%d", &info);
+    newNode->data = info;
+    while (temp != NULL)
+    {
+        temp = temp->next;
+    }
+    newNode->prev = temp->next;
+    newNode->next = NULL;
+    temp->next = newNode;
+}
+
 int main()
 {
     createList();
     Display();
     InsertNodeBeg();
+    Display();
+    InsertNodeEnd();
     Display();
     return 0;
 }
