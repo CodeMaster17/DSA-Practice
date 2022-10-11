@@ -62,6 +62,9 @@ void InsertNodeBeg()
 }
 
 // insert node end
+// not completed
+
+//
 void InsertNodeEnd()
 {
     int info;
