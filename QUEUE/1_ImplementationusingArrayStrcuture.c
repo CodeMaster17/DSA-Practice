@@ -40,7 +40,7 @@ void enqueue(struct Queue *ptr, int val) // function to take input of the elemen
 {
     if (isFull(ptr))
     {
-        printf("Queue Overflow");
+        printf("Queue Overflow\n");
     }
     else
     {
@@ -54,14 +54,14 @@ int dequeue(struct Queue *q)
     int a = -1;
     if (isEmpty(q)) // function to check wheather the queue is empty
     {
-        printf("this queue is full");
+        printf("this queue is full\n");
     }
     else
     {
         q->f++;
-        q = q->arr[q->f];
+        a = q->arr[q->f];
     }
-    return a;
+    return a; // returning the value to be removed
 }
 
 int main()
@@ -71,14 +71,27 @@ int main()
     q.f = q.r = -1;
     q.arr = (int *)malloc(q.size * (sizeof(int)));
 
-    if (isEmpty(&q))
-    {
-        printf("Queue is empty");
-    }
-
     // enqueue few elements
     enqueue(&q, 12);
     enqueue(&q, 15);
+    printf("Dequeing the element %d\n", dequeue(&q));
+    // printf("Dequeing the element %d\n", dequeue(&q));
 
+    if (isEmpty(&q))
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Q is not empty\n");
+    }
+    if (isFull(&q))
+    {
+        printf("Queue is full\n");
+    }
+    else
+    {
+        printf("Q is not full\n");
+    }
     return 0;
 }
