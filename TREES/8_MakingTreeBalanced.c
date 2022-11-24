@@ -1,14 +1,11 @@
 // HARSSHIT YADAV
 // 2105891
-//  check wheather a tree is balanced orr not
+//  Make a Binary tree a balanced tree
 /*
-      50
-    /   \
-   40   60
-  /
-20
-
+    algo
+        1- calculate max height of the tree
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 struct Node
@@ -64,18 +61,34 @@ int height(struct Node *root)
     }
 }
 
-void chkBalance(struct Node *root)
+void insertElemUsingHeight(struct Node *root)
 {
     int leftHeight = height(root->left);
     int rightHeight = height(root->right);
-    if (leftHeight - rightHeight > 1 || rightHeight - leftHeight > 1)
+    int maxHeight = (leftHeight > rightHeight) ? leftHeight : rightHeight;
+    int minHeight = (leftHeight > rightHeight) ? leftHeight : rightHeight;
+    int limit, i = 0;
+    limit = maxHeight - minHeight;
+    while (i < limit)
     {
-        printf("tree not  balanced");
+        insertElements(root->left);
+        insertElements(root->right);
+        i++;
     }
-    else
-    {
-        printf("tree  balanced");
-    }
+}
+
+// insert extra elements
+void insertElements(struct Node *ptr)
+{
+
+    struct Node *newNodeLeft = (struct Node *)malloc(sizeof(struct Node));
+    struct Node *newNodeRight = (struct Node *)malloc(sizeof(struct Node));
+    newNodeLeft->data = ptr->data / 2;
+    newNodeRight->data = ptr->data * 2;
+    ptr->left = newNodeLeft;
+    ptr->right = newNodeRight;
+    insertElement(ptr->left);
+    insertElement(ptr->right);
 }
 
 int main()
@@ -96,16 +109,7 @@ int main()
             root = insert(root, data);
             break;
         case 2:
-
-            // inOrder(root);
-            break;
-        case 3:
-            heightTree = height(root);
-            printf("height of tree is : %d \n", heightTree);
-            break;
-        case 4:
-            chkBalance(root);
-            break;
+            
         default:
             break;
         }
